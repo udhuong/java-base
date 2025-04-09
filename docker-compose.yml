@@ -6,14 +6,15 @@ services:
         environment:
             MYSQL_DATABASE: ${DB_DATABASE}
             MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
-            MYSQL_PASSWORD: ${DB_USERNAME}
-            MYSQL_USER: ${DB_PASSWORD}
+            MYSQL_PASSWORD: ${DB_PASSWORD}
+            MYSQL_USER: ${DB_USERNAME}
         volumes:
             - mysql_data:/var/lib/mysql
         ports:
             - "3306:3306"
         networks:
             - java_network
+
     phpmyadmin:
         image: phpmyadmin/phpmyadmin:5.2.1
         container_name: java_base_phpmyadmin
@@ -28,6 +29,7 @@ services:
             - db
         networks:
             - java_network
+
     redis:
         image: redis:7.2.4
         container_name: java_base_redis
@@ -36,11 +38,12 @@ services:
             - "6379:6379"
         environment:
             REDIS_PASSWORD: ${REDIS_PASSWORD}
-        command: [ "redis-server", "--requirepass", "yourpassword" ]
+        command: [ "redis-server", "--requirepass", "${REDIS_PASSWORD}" ]
         volumes:
             - redis_data:/data
         networks:
             - java_network
+
     mongodb:
       image: mongo:7.0
       container_name: java_base_mongo
