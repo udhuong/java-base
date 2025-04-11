@@ -10,7 +10,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 
 @EnableCaching
 @EnableAsync
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "com.udh")
 public class JavaBaseApplication {
 
     public static void main(String[] args) {

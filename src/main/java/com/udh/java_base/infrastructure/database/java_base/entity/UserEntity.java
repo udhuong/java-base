@@ -19,4 +19,10 @@ public class UserEntity {
 
     @Column(name = "name")
     private String name;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "password")
+    private String password;
 }
